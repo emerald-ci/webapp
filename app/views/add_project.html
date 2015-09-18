@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row" ng-repeat="project in projects">
+        <div class="col-md-10">{{ project.full_name }}</div>
+        <div class="col-md-2"><a class="btn btn-primary" ng-click="add(project.id)">add</a></div>
+      </div>
+    </div>
+  </div>
+</div>
