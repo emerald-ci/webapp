@@ -35,6 +35,7 @@ docker:
     - /var/run/docker.sock:/var/run/docker.sock
 api:
   image: emeraldci/api
+  command: api
   ports:
     - 5000
   links:
@@ -52,7 +53,7 @@ api:
     - FRONTEND_URL=http://localhost:8080/
 worker:
   image: emeraldci/api
-  command: bundle exec sidekiq -r ./lib/emerald/api/workers/job_worker.rb
+  command: worker
   links:
     - db:db
     - redis:redis
