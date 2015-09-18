@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div id="le-terminal" ng-bind-html="terminalOutput">
+      <div id="le-terminal">
+        <div ng-bind-html="terminalOutputPreload"></div>
+        <div ng-bind-html="terminalOutputWebsocket"></div>
       </div>
     </div>
   </div>
