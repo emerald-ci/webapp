@@ -3,7 +3,12 @@
     <div class="col-md-12">
       <h1>{{ project.name }}</h1>
       <div class="row" ng-repeat="build in builds">
-        <p>{{ build.short_description }}</p>
+        <p ng-click="loadJobsForBuild(build.id)">{{ build.short_description }}</p>
+        <ul>
+          <li ng-repeat="job in jobs">
+            <a href="#/jobs/{{job.id}}">Job.{{job.id}}</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

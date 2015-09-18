@@ -46,6 +46,11 @@ angular
         controller: 'ProjectCtrl',
         controllerAs: 'project'
       })
+      .when('/jobs/:jobId', {
+        templateUrl: 'views/job.html',
+        controller: 'JobCtrl',
+        controllerAs: 'job'
+      })
       .otherwise({
         redirectTo: '/'
       });

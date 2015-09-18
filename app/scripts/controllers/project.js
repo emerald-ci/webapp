@@ -15,7 +15,12 @@ angular.module('emeraldApp')
         });
       $http.get('/api/v1/projects/' + $routeParams.projectId + '/builds').
         then(function(response) {
-            console.log(response);
             $scope.builds = response.data;
         });
+      $scope.loadJobsForBuild = function(buildId) {
+          $http.get('/api/v1/builds/' + buildId + '/jobs').
+            then(function(response) {
+                $scope.jobs = response.data;
+            });
+      };
   }]);
