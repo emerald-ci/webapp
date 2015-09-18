@@ -1,12 +1,29 @@
-# emerald
+Emerald CI Webapp
+=================
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.12.1.
+Development
+-----------
 
-## Build & development
+You need to have Docker and Docker-Compose installed.
 
-Run `grunt` for building and `grunt serve` for preview.
+You need to clone all the related git repositories from the [emerald-ci
+org](https://github.com/emerald-ci) on GitHub.
 
-## Testing
+Then build the docker images for each git repo. There should be a `Makefile` in
+each repo that builds the image. So just run
 
-Running `grunt test` will run the unit tests with karma.
+	make
+
+in each repo and you should be all set.
+
+Then build and run this project.
+
+	docker-compose build
+  docker-compose up
+
+> Hint: this might fail, but don't worry, just run `docker-compose up` again,
+> sometimes setup of the dependent services take longer and an applications
+> boot fails because it cannot connect to it.
+
+Now you can start hacking! :D
+
