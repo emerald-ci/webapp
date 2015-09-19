@@ -1,0 +1,7 @@
+      <div class="row" ng-repeat="job in jobs">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p ui-sref="project.build.job({ projectId: project.id, buildId: build.id, jobId: job.id })">Job.{{ job.id }}</p>
+          </div>
+        </div>
+      </div>

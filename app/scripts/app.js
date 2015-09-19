@@ -17,47 +17,105 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.router'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('main', {
+        url: '/',
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        controller: 'MainCtrl'
       })
-      .when('/about', {
+      .state('about', {
+        url: '/about',
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controller: 'AboutCtrl'
       })
-      .when('/login', {
+      .state('login', {
+        url: '/login',
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-        controllerAs: 'login'
+        controller: 'LoginCtrl'
       })
-      .when('/projects/add', {
-        templateUrl: 'views/add_project.html',
-        controller: 'AddProjectCtrl',
-        controllerAs: 'add_project'
+      .state('projects', {
+        url: '/projects',
+        templateUrl: 'views/projects.html',
+        controller: 'ProjectsCtrl'
       })
-      .when('/projects/:projectId', {
+      .state('project', {
+        abstract: true,
+        url: '/projects/:projectId',
         templateUrl: 'views/project.html',
-        controller: 'ProjectCtrl',
-        controllerAs: 'project'
+        resolve: {
+          project: ['$stateParams', 'api', function($stateParams, api) {
+              return api.project($stateParams.projectId);
+          }]
+        }
       })
-      .when('/jobs/:jobId', {
+      .state('project.builds', {
+        url: '',
+        templateUrl: 'views/builds.html',
+        controller: 'BuildsCtrl',
+        resolve: {
+          project: ['project', function(project) {
+              return project; // inherited from parent state
+          }],
+          builds: ['api', 'project', function(api, project) {
+              return api.builds(project.id);
+          }],
+        }
+      })
+      .state('project.build', {
+        abstract: true,
+        url: '/builds/:buildId',
+        template: '<div ui-view></div>',
+        resolve: {
+          project: ['project', function(project) {
+              return project; // inherited from parent state
+          }],
+          build: ['$stateParams', 'api', function($stateParams, api) {
+              return api.build($stateParams.buildId);
+          }]
+        }
+      })
+      .state('project.build.jobs', {
+        url: '',
+        controller: 'JobsCtrl',
+        templateUrl: 'views/jobs.html',
+        resolve: {
+          project: ['project', function(project) {
+              return project; // inherited from parent state
+          }],
+          build: ['build', function(build) {
+              return build; // inherited from parent state
+          }],
+          jobs: ['api', 'build', function(api, build) {
+              return api.jobs(build.id);
+          }]
+        }
+      })
+      .state('project.build.job', {
+        url: '/jobs/:jobId',
         templateUrl: 'views/job.html',
         controller: 'JobCtrl',
-        controllerAs: 'job'
-      })
-      .otherwise({
-        redirectTo: '/'
+        resolve: {
+          project: ['project', function(project) {
+              return project; // inherited from parent state
+          }],
+          build: ['build', function(build) {
+              return build; // inherited from parent state
+          }],
+          job: ['$stateParams', 'api', function($stateParams, api) {
+              return api.job($stateParams.jobId);
+          }]
+        }
       });
-  });
+
+      $urlRouterProvider.otherwise('/');
+  }]);
 
 angular.module('emeraldApp').run(['$rootScope', '$http', '$location', function ($rootScope, $http, $location) {
-    $http.get("http://localhost:8080/api/v1/auth/active")
+    $http.get("/api/v1/auth/active")
         .then(function(response) {
             // all good, we can continue
         }, function(response) {
