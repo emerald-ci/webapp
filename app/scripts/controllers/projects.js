@@ -8,9 +8,6 @@
  * Controller of the emeraldApp
  */
 angular.module('emeraldApp')
-  .controller('ProjectsCtrl', ['$scope', '$http', '$stateParams', function ($scope, $http, $stateParams) {
-      $http.get('http://localhost:8080/api/v1/projects').
-        then(function(response) {
-            $scope.projects = response.data;
-        });
+  .controller('ProjectsCtrl', ['$scope', 'projects', function ($scope, projects) {
+      $scope.projects = projects;
   }]);
