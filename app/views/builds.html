@@ -1,7 +1,7 @@
       <h4>Builds</h4>
       <div id="build-list">
         <div class="row" ng-repeat="build in builds">
-          <div class="panel panel-default build" ui-sref="project.build.jobs({ projectId: project.id, buildId: build.id })">
+          <div class="panel panel-{{ build.latest_job_result | buildResultFilter }} build" ui-sref="project.build.jobs({ projectId: project.id, buildId: build.id })">
             <div class="panel-body">
               <span>{{ build.short_description }}</span>
             </div>

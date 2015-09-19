@@ -15,6 +15,7 @@ angular.module('emeraldApp')
           var deferred = $q.defer();
           $http.get(baseUri + resource).
             then(function(response) {
+                console.log(response);
                 return deferred.resolve(response.data);
             }, function(response){
                 return deferred.reject();

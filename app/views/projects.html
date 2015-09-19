@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <div id="project-list">
         <div class="row">
-          <div class="panel panel-default project" ng-repeat="project in projects" ui-sref="project.builds({ projectId: project.id })">
+          <div class="panel panel-{{ project.latest_build_result | buildResultFilter }} project" ng-repeat="project in projects" ui-sref="project.builds({ projectId: project.id })">
             <div class="panel-body">
               <span>{{ project.name }}</span>
             </div>
