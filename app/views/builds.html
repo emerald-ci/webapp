@@ -1,4 +1,4 @@
-      <h4>Builds</h4>
+      <h4>Builds <a class="btn btn-primary" ng-click="manuallyTriggerBuild()">trigger</a></h4>
       <div id="build-list">
         <div class="row" ng-repeat="build in builds">
           <div class="panel panel-{{ build.latest_job_result | buildResultFilter }} build" ui-sref="project.build.jobs({ projectId: project.id, buildId: build.id })">
