@@ -42,6 +42,16 @@ angular
           }]
         }
       })
+      .state('add_project', {
+        url: '/add_project',
+        templateUrl: 'views/add_project.html',
+        controller: 'AddProjectCtrl',
+        resolve: {
+          github_repos: ['api', function(api) {
+              return api.githubRepos();
+          }]
+        }
+      })
       .state('project', {
         abstract: true,
         url: '/projects/:projectId',
@@ -116,9 +126,10 @@ angular
   }]);
 
 angular.module('emeraldApp').run(['$rootScope', '$http', '$location', function ($rootScope, $http, $location) {
-    $http.get("/api/v1/auth/active")
+    $http.get("/api/v1/profile")
         .then(function(response) {
-            // all good, we can continue
+            console.log(response);
+            $rootScope.profile = response.data;
         }, function(response) {
             // when not logged in (XMLHttpRequest automatically follows redirects but fails on cross origin to GitHub OAuth)
             $location.path('/login');

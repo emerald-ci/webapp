@@ -15,15 +15,21 @@ angular.module('emeraldApp')
 
       var uri = "ws://" + window.document.location.host + "/api/v1/jobs/" + $scope.job.id + "/logs";
       var ws  = new WebSocket(uri);
+      $scope.terminalOutputWebsocket = "";
+      $scope.terminalOutputPreload = "";
       ws.onmessage = function(message) {
-          $scope.terminalOutputWebsocket += JSON.parse(message.data).payload.log;
-          $scope.$apply();
+          if(undefined != message) {
+              $scope.terminalOutputWebsocket += JSON.parse(message.data).payload.log;
+              $scope.$apply();
+          }
       };
 
       $http.get('http://localhost:8080/api/v1/jobs/' + $scope.job.id + '/log').
         then(function(response) {
-            response.data.forEach(function(logLine) {
-                $scope.terminalOutputPreload += logLine;
-            });
-        });
+                 response.data.forEach(function(logLine) {
+                     if(undefined != logLine) {
+                         $scope.terminalOutputPreload += logLine;
+                     }
+                 });
+             });
   }]);

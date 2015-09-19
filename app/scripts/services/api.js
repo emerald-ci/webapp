@@ -24,6 +24,9 @@ angular.module('emeraldApp')
       };
 
       return {
+        githubRepos: function() {
+            return apiCallGet('/api/v1/github/repos');
+        },
         projects: function() {
             return apiCallGet('/api/v1/projects');
         },

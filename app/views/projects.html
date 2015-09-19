@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+      <h2>Projects <a class="btn btn-primary" ui-sref="add_project">ADD</a></h2>
       <div id="project-list">
         <div class="row">
           <div class="panel panel-{{ project.latest_build_result | buildResultFilter }} project" ng-repeat="project in projects" ui-sref="project.builds({ projectId: project.id })">

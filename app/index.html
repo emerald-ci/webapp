@@ -43,6 +43,9 @@
               <!--<li class="active"><a href="#/">Home</a></li>
               <li><a href="#/projects/add">Add Project</a></li>-->
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="navbar-user"><span><img src="{{ profile.avatar_url }}&s=40" /> {{ profile.login }}</span></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -96,6 +99,7 @@
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/projects.js"></script>
         <script src="scripts/controllers/project.js"></script>
+        <script src="scripts/controllers/add_project.js"></script>
         <script src="scripts/controllers/builds.js"></script>
         <script src="scripts/controllers/jobs.js"></script>
         <script src="scripts/controllers/job.js"></script>
