@@ -1,10 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="row" ng-repeat="project in projects">
-        <div class="project" ui-sref="project.builds({ projectId: project.id })">
-          <div class="col-md-10">{{ project.name }}</div>
-          <div class="col-md-2"><a class="btn btn-primary">config</a></div>
+      <div id="project-list">
+        <div class="row">
+          <div class="panel panel-default project" ng-repeat="project in projects" ui-sref="project.builds({ projectId: project.id })">
+            <div class="panel-body">
+              <span>{{ project.name }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

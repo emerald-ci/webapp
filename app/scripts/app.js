@@ -22,11 +22,6 @@ angular
   ])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('main', {
-        url: '/',
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
       .state('about', {
         url: '/about',
         templateUrl: 'views/about.html',
@@ -38,7 +33,7 @@ angular
         controller: 'LoginCtrl'
       })
       .state('projects', {
-        url: '/projects',
+        url: '/',
         templateUrl: 'views/projects.html',
         controller: 'ProjectsCtrl'
       })
@@ -111,6 +106,7 @@ angular
         }
       });
 
+      $urlRouterProvider.when('/', '/projects');
       $urlRouterProvider.otherwise('/');
   }]);
 

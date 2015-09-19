@@ -1,8 +1,10 @@
       <h4>Builds</h4>
-      <div class="row" ng-repeat="build in builds">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <p ui-sref="project.build.jobs({ projectId: project.id, buildId: build.id })">{{ build.short_description }}</p>
+      <div id="build-list">
+        <div class="row" ng-repeat="build in builds">
+          <div class="panel panel-default build" ui-sref="project.build.jobs({ projectId: project.id, buildId: build.id })">
+            <div class="panel-body">
+              <span>{{ build.short_description }}</span>
+            </div>
           </div>
         </div>
       </div>
