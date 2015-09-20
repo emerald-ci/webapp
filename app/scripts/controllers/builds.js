@@ -21,7 +21,7 @@ angular.module('emeraldApp')
           if(json.event_type == "update" && json.type == "job") {
               $scope.builds.forEach(function(build) {
                   if(build.id == json.data.build_id) {
-                      build.latest_job_result = json.data.state;
+                      build.latest_job = json.data;
                       $scope.$apply();
                   }
               });

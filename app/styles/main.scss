@@ -58,16 +58,11 @@ body {
   padding-right: 10px;
 }
 
-#project-list .project,
-#build-list .build,
-#job-list .job {
+.project.project:hover,
+.panel.build:hover,
+.panel.job:hover {
+  background-color: #f5f5f5;
   cursor: pointer;
-}
-
-#project-list .project:hover,
-#build-list .build:hover,
-#job-list .job:hover {
-  background-color: #ddd;
 }
 
 .navbar-user {
@@ -77,5 +72,13 @@ body {
 .navbar-user img {
   margin-top: 5px;
   padding-right: 5px;
+}
+
+h2 .btn {
+  margin-top: -5px;
+}
+
+.build {
+  margin: 10px;
 }
 
