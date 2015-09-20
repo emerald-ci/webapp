@@ -92,3 +92,16 @@ h2 .btn {
   margin-top: -5px;
 }
 
+.current-job .panel-body:before,
+.current-job .panel-body:after {
+  content: none;
+}
+
+.terminalOutput {
+  margin-top: -27px;
+}
+
+.terminalOutput:last-child {
+  margin-bottom: -65px;
+}
+

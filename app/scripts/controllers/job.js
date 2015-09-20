@@ -26,8 +26,9 @@ angular.module('emeraldApp')
 
       $http.get('http://localhost:8080/api/v1/jobs/' + $scope.job.id + '/log').
         then(function(response) {
+                 console.log(response.data);
                  response.data.forEach(function(logLine) {
-                     if(undefined != logLine) {
+                     if(undefined != logLine && logLine.length !== 0 && logLine.trim()) {
                          $scope.terminalOutputPreload += logLine;
                      }
                  });
