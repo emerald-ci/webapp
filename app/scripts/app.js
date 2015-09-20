@@ -130,6 +130,12 @@ angular.module('emeraldApp').run(['$rootScope', '$http', '$location', function (
         .then(function(response) {
             console.log(response);
             $rootScope.profile = response.data;
+
+            var uri = "ws://" + window.document.location.host + "/api/v1/events";
+            $rootScope.event_bus = new WebSocket(uri);
+            $rootScope.event_bus.onmessage = function(message) {
+                console.log(message);
+            };
         }, function(response) {
             // when not logged in (XMLHttpRequest automatically follows redirects but fails on cross origin to GitHub OAuth)
             $location.path('/login');

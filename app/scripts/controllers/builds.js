@@ -12,6 +12,22 @@ angular.module('emeraldApp')
       $scope.project = project;
       $scope.builds = builds;
 
+      $scope.event_bus.onmessage = function(message) {
+          var json = JSON.parse(message.data);
+          if(json.event_type == "new" && json.type == "build") {
+              $scope.builds.push(json.data);
+              $scope.$apply();
+          }
+          if(json.event_type == "update" && json.type == "job") {
+              $scope.builds.forEach(function(build) {
+                  if(build.id == json.data.build_id) {
+                      build.latest_job_result = json.data.state;
+                      $scope.$apply();
+                  }
+              });
+          }
+      };
+
       $scope.manuallyTriggerBuild = function() {
           $http.post('/api/v1/projects/' + $scope.project.id + '/builds/trigger/manual').
             then(function(response) {
