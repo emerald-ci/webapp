@@ -46,11 +46,6 @@ angular
         url: '/add_project',
         templateUrl: 'views/add_project.html',
         controller: 'AddProjectCtrl',
-        resolve: {
-          github_repos: ['api', function(api) {
-              return api.githubRepos();
-          }]
-        }
       })
       .state('project', {
         abstract: true,

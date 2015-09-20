@@ -1,6 +1,7 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "components-font-awesome/scss/font-awesome.scss";
 // endbower
 
 body {
@@ -8,10 +9,10 @@ body {
 }
 
 #le-terminal {
-  background: #2a2a2a;
-  color: white;
   white-space: pre;
   padding: 20px;
+  background: #2a2a2a;
+  color: white;
   overflow: scroll;
 }
 
@@ -79,11 +80,15 @@ h2 .btn {
 }
 
 .build {
-  margin: 10px;
+  margin: 20px;
 }
 
 .username {
   margin-top: 15px;
   margin-left: 5px;
+}
+
+.btn.add-repo {
+  margin-top: -5px;
 }
 

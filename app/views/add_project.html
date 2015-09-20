@@ -1,12 +1,19 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-10">
+      <h2>Available GitHub Repos</h2>
+    </div>
+    <div class="col-md-2 text-right">
+      <h2><a class="btn btn-primary sync-repo" ng-click="sync()"><i class="fa fa-refresh"></i> SYNC REPOS</a></h2>
+    </div>
     <div class="col-md-12">
       <div class="row" ng-repeat="repo in github_repos">
         <div class="panel panel-default">
           <div class="panel-body">
-            <div class="pull-left">{{ repo.full_name }}</div>
-            <div class="pull-right"><a class="btn btn-primary" ng-click="add(repo.id)">add</a></div>
-            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-10">{{ repo.full_name }}</div>
+              <div class="col-md-2 text-right"><a class="btn btn-primary add-repo" ng-click="add(repo.github_repo_id)">add</a></div>
+            </div>
           </div>
         </div>
       </div>
