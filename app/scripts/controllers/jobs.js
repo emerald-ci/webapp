@@ -17,7 +17,7 @@ angular.module('emeraldApp')
           var json = JSON.parse(message.data);
           if(json.event_type == "new" && json.type == "job") {
               if($scope.build.id == json.data.build_id) {
-                  $scope.jobs.push(json.data);
+                  $scope.jobs.unshift(json.data);
                   $scope.$apply();
               }
           }

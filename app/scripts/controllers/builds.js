@@ -15,7 +15,7 @@ angular.module('emeraldApp')
       $scope.event_bus.onmessage = function(message) {
           var json = JSON.parse(message.data);
           if(json.event_type == "new" && json.type == "build") {
-              $scope.builds.push(json.data);
+              $scope.builds.unshift(json.data);
               $scope.$apply();
           }
           if(json.event_type == "update" && json.type == "job") {
