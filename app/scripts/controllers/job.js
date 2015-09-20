@@ -24,6 +24,16 @@ angular.module('emeraldApp')
           }
       };
 
+      $scope.event_bus.onmessage = function(message) {
+          var json = JSON.parse(message.data);
+          if(json.event_type == "update" && json.type == "job") {
+              if($scope.job.id == json.data.id) {
+                  $scope.job = json.data;
+                  $scope.$apply();
+              }
+          }
+      };
+
       $http.get('http://localhost:8080/api/v1/jobs/' + $scope.job.id + '/log').
         then(function(response) {
                  console.log(response.data);

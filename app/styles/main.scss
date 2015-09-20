@@ -13,7 +13,7 @@ body {
   padding: 20px;
   background: #2a2a2a;
   color: white;
-  overflow: scroll;
+  overflow-x: scroll;
 }
 
 .bold {
@@ -80,7 +80,7 @@ h2 .btn {
 }
 
 .build {
-  margin: 20px;
+  margin: 10px 10px;
 }
 
 .username {
@@ -97,11 +97,12 @@ h2 .btn {
   content: none;
 }
 
-.terminalOutput {
+.terminalOutput:first-child {
   margin-top: -27px;
 }
 
 .terminalOutput:last-child {
-  margin-bottom: -65px;
+  margin-top: -20px;
+  margin-bottom: -55px;
 }
 

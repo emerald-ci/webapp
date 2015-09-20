@@ -8,11 +8,11 @@
               </div>
             </div>
             <div class="panel-body">
-              <div class="panel panel-{{ build.latest_job.state | buildResultFilter }} current-job" ui-sref="project.build.job({ projectId: project.id, buildId: build.id, jobId: build.latest_job.id })">
+              <div class="panel panel-{{ job.state | buildResultFilter }} current-job" ui-sref="project.build.job({ projectId: project.id, buildId: build.id, jobId: build.latest_job.id })">
                 <div class="panel-heading">
                   <div class="row">
                     <div class="col-md-10">{{ build.short_description }}</div>
-                    <div class="col-md-2 text-right">{{ build.latest_job.state }}</div>
+                    <div class="col-md-2 text-right">{{ job.state }}</div>
                   </div>
                 </div>
                 <div class="panel-body" id="le-terminal">
