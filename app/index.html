@@ -44,7 +44,10 @@
               <li><a href="#/projects/add">Add Project</a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li class="navbar-user"><span><img src="{{ profile.avatar_url }}&s=40" /> {{ profile.login }}</span></li>
+              <li class="navbar-user" ng-if="profile">
+                <div class="username pull-right"><strong>{{ profile.login }}</strong></div>
+                <div class="avatar pull-right"><img src="{{ profile.avatar_url }}&s=40" /></div>
+              </li>
             </ul>
           </div>
         </div>
