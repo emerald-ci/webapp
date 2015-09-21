@@ -8,11 +8,8 @@
  * Controller of the emeraldApp
  */
 angular.module('emeraldApp')
-  .controller('ProjectsCtrl', ['$scope', 'api', function ($scope, api) {
-      api.projects().
-        then(function(response) {
-          $scope.projects = response;
-        });
+  .controller('ProjectsCtrl', ['$scope', 'api', 'projects', function ($scope, api, projects) {
+      $scope.projects = projects;
 
       $scope.event_bus.onmessage = function(message) {
           var json = JSON.parse(message.data);
