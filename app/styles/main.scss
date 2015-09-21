@@ -56,7 +56,7 @@ body {
   height: 40px;
   float: left;
   margin-top: -5px;
-  padding-right: 10px;
+  padding: 5px;
 }
 
 .project.project:hover,
@@ -66,26 +66,12 @@ body {
   cursor: pointer;
 }
 
-.navbar-user {
-  color: white;
-}
-
-.navbar-user img {
-  margin-top: 5px;
-  padding-right: 5px;
-}
-
 h2 .btn {
   margin-top: -5px;
 }
 
 .build {
   margin: 10px 10px;
-}
-
-.username {
-  margin-top: 15px;
-  margin-left: 5px;
 }
 
 .btn.add-repo {
@@ -104,5 +90,9 @@ h2 .btn {
 .terminalOutput:last-child {
   margin-top: -20px;
   margin-bottom: -55px;
+}
+
+li.profile {
+  margin-top: -5px;
 }
 
