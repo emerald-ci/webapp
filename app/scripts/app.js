@@ -35,12 +35,7 @@ angular
       .state('projects', {
         url: '/',
         templateUrl: 'views/projects.html',
-        controller: 'ProjectsCtrl',
-        resolve: {
-          projects: ['api', function(api) {
-              return api.projects();
-          }]
-        }
+        controller: 'ProjectsCtrl'
       })
       .state('add_project', {
         url: '/add_project',
@@ -64,10 +59,7 @@ angular
         resolve: {
           project: ['project', function(project) {
               return project; // inherited from parent state
-          }],
-          builds: ['api', 'project', function(api, project) {
-              return api.builds(project.id);
-          }],
+          }]
         }
       })
       .state('project.build', {

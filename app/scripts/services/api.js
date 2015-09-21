@@ -9,11 +9,21 @@
  */
 angular.module('emeraldApp')
   .service('api', ['$q', '$http', function ($q, $http) {
-      var baseUri = '';
+      var apiCallPost = function(resource, data) {
+          var deferred = $q.defer();
+          $http.post(resource).
+            then(function(response, data) {
+                console.log(response);
+                return deferred.resolve(response.data);
+            }, function(response){
+                return deferred.reject();
+            });
+          return deferred.promise;
+      };
 
       var apiCallGet = function(resource) {
           var deferred = $q.defer();
-          $http.get(baseUri + resource).
+          $http.get(resource).
             then(function(response) {
                 console.log(response);
                 return deferred.resolve(response.data);
@@ -27,6 +37,12 @@ angular.module('emeraldApp')
         githubRepos: function() {
             return apiCallGet('/api/v1/github/repos');
         },
+        syncRepos: function() {
+            return apiCallPost('/api/v1/github/repos/sync');
+        },
+        addGithubRepo: function(githubRepoId) {
+            return apiCallPost('/api/v1/github/repos/' + githubRepoId);
+        },
         projects: function() {
             return apiCallGet('/api/v1/projects');
         },
@@ -38,6 +54,9 @@ angular.module('emeraldApp')
         },
         build: function(buildId) {
             return apiCallGet('/api/v1/builds/' + buildId);
+        },
+        triggerBuild: function(projectId) {
+            return apiCallPost('/api/v1/projects/' + projectId + '/builds/trigger/manual');
         },
         jobs: function(buildId) {
             return apiCallGet('/api/v1/builds/' + buildId + '/jobs');

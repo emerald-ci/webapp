@@ -8,10 +8,14 @@
  * Controller of the emeraldApp
  */
 angular.module('emeraldApp')
-  .controller('JobsCtrl', ['$scope', 'project', 'build', 'jobs', function ($scope, project, build, jobs) {
+  .controller('JobsCtrl', ['$scope', 'api', 'project', 'build', function ($scope, api, project, build) {
       $scope.project = project;
       $scope.build = build;
-      $scope.jobs = jobs;
+
+      api.jobs($scope.project.id, $scope.build.id)
+        .then(function(response) {
+            $scope.jobs = response;
+        });
 
       $scope.event_bus.onmessage = function(message) {
           var json = JSON.parse(message.data);

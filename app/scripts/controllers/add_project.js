@@ -8,21 +8,21 @@
  * Controller of the emeraldApp
  */
 angular.module('emeraldApp')
-  .controller('AddProjectCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
-      $scope.github_repos = $http.get('/api/v1/github/repos').
+  .controller('AddProjectCtrl', ['$scope', 'api', '$location', function ($scope, api, $location) {
+      api.githubRepos().
         then(function(response) {
-            $scope.github_repos = response.data
+            $scope.github_repos = response;
         });
 
       $scope.sync = function() {
-          $http.post('/api/v1/github/repos/sync').
+          api.syncRepos().
             then(function(response) {
-            $scope.github_repos = response.data
+                $scope.github_repos = response;
             });
       };
 
-      $scope.add = function(id) {
-          $http.post('/api/v1/github/repos/' + id).
+      $scope.add = function(githubRepoId) {
+          api.addGithubRepo(githubRepoId).
             then(function(response) {
                 $location.path('/');
             });

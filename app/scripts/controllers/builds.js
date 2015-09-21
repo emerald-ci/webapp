@@ -8,9 +8,13 @@
  * Controller of the emeraldApp
  */
 angular.module('emeraldApp')
-  .controller('BuildsCtrl', ['$scope', '$http', 'project', 'builds', function ($scope, $http, project, builds) {
+  .controller('BuildsCtrl', ['$scope', '$http', 'api', 'project', function ($scope, $http, api, project) {
       $scope.project = project;
-      $scope.builds = builds;
+
+      api.builds($scope.project.id).
+        then(function(response) {
+            $scope.builds = response;
+        });
 
       $scope.event_bus.onmessage = function(message) {
           var json = JSON.parse(message.data);
@@ -29,9 +33,6 @@ angular.module('emeraldApp')
       };
 
       $scope.manuallyTriggerBuild = function() {
-          $http.post('/api/v1/projects/' + $scope.project.id + '/builds/trigger/manual').
-            then(function(response) {
-                console.log(response);
-            });
+          api.triggerBuild($scope.project.id);
       };
   }]);
