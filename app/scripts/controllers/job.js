@@ -34,7 +34,7 @@ angular.module('emeraldApp')
           }
       };
 
-      $http.get('http://localhost:8080/api/v1/jobs/' + $scope.job.id + '/log').
+      $http.get('/api/v1/jobs/' + $scope.job.id + '/log').
         then(function(response) {
                  console.log(response.data);
                  response.data.forEach(function(logLine) {
