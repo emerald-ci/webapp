@@ -27,3 +27,7 @@ Then build and run this project.
 
 Now you can start hacking! :D
 
+Issues
+------
+
+Please report issues to the meta repo [here](https://github.com/emerald-ci/Emerald-CI/issues).
