@@ -16,7 +16,7 @@ angular.module('emeraldApp')
                 console.log(response);
                 return deferred.resolve(response.data);
             }, function(response){
-                return deferred.reject();
+                return deferred.reject(response);
             });
           return deferred.promise;
       };
@@ -28,7 +28,7 @@ angular.module('emeraldApp')
                 console.log(response);
                 return deferred.resolve(response.data);
             }, function(response){
-                return deferred.reject();
+                return deferred.reject(response);
             });
           return deferred.promise;
       };

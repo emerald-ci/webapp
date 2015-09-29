@@ -117,7 +117,7 @@ angular
       $urlRouterProvider.otherwise('/');
   }]);
 
-angular.module('emeraldApp').run(['$rootScope', '$http', '$location', function ($rootScope, $http, $location) {
+angular.module('emeraldApp').run(['$rootScope', '$http', '$location', 'errorService', function ($rootScope, $http, $location, errorService) {
     $http.get("/api/v1/profile")
         .then(function(response) {
             console.log(response);
@@ -132,4 +132,10 @@ angular.module('emeraldApp').run(['$rootScope', '$http', '$location', function (
             // when not logged in (XMLHttpRequest automatically follows redirects but fails on cross origin to GitHub OAuth)
             $location.path('/login');
         });
+
+    $rootScope.dismissAlert = function(type, index) {
+        errorService.removeError(type, index);
+    };
+    $rootScope.anyErrors = errorService.anyErrors;
+    $rootScope.errors = errorService.errors;
 }]);

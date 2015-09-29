@@ -49,6 +49,19 @@
       </div>
     </div>
 
+    <div ng-if="anyErrors()" class="container">
+      <div ng-repeat="(type, typeErrors) in errors">
+        <div class="row" ng-repeat="error in typeErrors">
+          <div class="col-md-12" ng-repeat="error in typeErrors">
+            <div class="alert alert-{{ type }}" role="alert">
+              <button type="button" class="close" ng-click="dismissAlert($parent.type, $index)"><span>&times;</span></button>
+              {{ error }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <div ui-view></div>
     </div>
@@ -58,18 +71,6 @@
         <!--<p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>-->
       </div>
     </div>
-
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -103,6 +104,7 @@
         <script src="scripts/controllers/job.js"></script>
         <script src="scripts/services/api.js"></script>
         <script src="scripts/filters/buildresultfilter.js"></script>
+        <script src="scripts/services/errorservice.js"></script>
         <!-- endbuild -->
 </body>
 </html>
