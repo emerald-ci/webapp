@@ -50,7 +50,7 @@ angular
       .state('project', {
         abstract: true,
         url: '/projects/:projectId',
-        templateUrl: 'views/project.html',
+        template: '<div ui-view></div>',
         resolve: {
           project: ['$stateParams', 'api', function($stateParams, api) {
               return api.project($stateParams.projectId);
@@ -77,22 +77,6 @@ angular
           }],
           build: ['$stateParams', 'api', function($stateParams, api) {
               return api.build($stateParams.buildId);
-          }]
-        }
-      })
-      .state('project.build.jobs', {
-        url: '',
-        controller: 'JobsCtrl',
-        templateUrl: 'views/jobs.html',
-        resolve: {
-          project: ['project', function(project) {
-              return project; // inherited from parent state
-          }],
-          build: ['build', function(build) {
-              return build; // inherited from parent state
-          }],
-          jobs: ['api', 'build', function(api, build) {
-              return api.jobs(build.id);
           }]
         }
       })
