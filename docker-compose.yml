@@ -69,11 +69,11 @@ worker:
     - FLUENTD_URL=localhost:24224 # this is tricky because it's the actual hosts docker daemon
 web:
   build: .
-  command: grunt serve
+  command: grunt serve --port 80
   volumes:
     - .:/app
   ports:
-    - 9000
+    - 80
     - 5000:5000
     - 35729:35729
 haproxy:

@@ -1,4 +1,5 @@
 FROM node:0.12.2
+MAINTAINER Frederic Branczyk <fbranczyk@gmail.com>
 
 COPY . /app
 
