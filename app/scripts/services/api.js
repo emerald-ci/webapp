@@ -34,6 +34,9 @@ angular.module('emeraldApp')
       };
 
       return {
+        githubRepoSyncState: function() {
+            return apiCallGet('/api/v1/github/repos/sync/status');
+        },
         githubRepos: function() {
             return apiCallGet('/api/v1/github/repos');
         },

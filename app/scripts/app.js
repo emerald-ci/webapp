@@ -45,7 +45,12 @@ angular
       .state('add_project', {
         url: '/add_project',
         templateUrl: 'views/add_project.html',
-        controller: 'AddProjectCtrl'
+        controller: 'AddProjectCtrl',
+        resolve: {
+          syncState: ['api', function(api) {
+              return api.githubRepoSyncState();
+          }]
+        }
       })
       .state('project', {
         abstract: true,
