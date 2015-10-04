@@ -35,12 +35,7 @@ angular
       .state('projects', {
         url: '/',
         templateUrl: 'views/projects.html',
-        controller: 'ProjectsCtrl',
-        resolve: {
-          projects: ['api', function(api) {
-              return api.projects();
-          }]
-        }
+        controller: 'ProjectsCtrl'
       })
       .state('add_project', {
         url: '/add_project',
