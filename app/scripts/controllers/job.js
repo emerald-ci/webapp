@@ -37,10 +37,6 @@ angular.module('emeraldApp')
       $http.get('/api/v1/jobs/' + $scope.job.id + '/log').
         then(function(response) {
                  console.log(response.data);
-                 response.data.forEach(function(logLine) {
-                     if(undefined != logLine && logLine.length !== 0 && logLine.trim()) {
-                         $scope.terminalOutputPreload += logLine;
-                     }
-                 });
+                 $scope.terminalOutputPreload = response.data;
              });
   }]);
