@@ -7,12 +7,6 @@ rabbitmq:
     - RABBITMQ_DEFAULT_USER=emeraldci
     - RABBITMQ_DEFAULT_PASS=secure
     - RABBITMQ_DEFAULT_VHOST=emeraldci
-fluentd:
-  image: emeraldci/fluentd
-  ports:
-    - 24224:24224
-  links:
-    - rabbitmq:rabbitmq
 db:
   image: postgres:9.4
   ports:
@@ -58,7 +52,6 @@ worker:
     - db:db
     - redis:redis
     - docker:docker
-    - fluentd:fluentd
     - rabbitmq:rabbitmq
   environment:
     - RACK_ENV=development
@@ -66,7 +59,6 @@ worker:
     - RABBITMQ_URL=amqp://emeraldci:secure@rabbitmq/emeraldci
     - REDIS_URL=redis://redis
     - DOCKER_URL=tcp://docker:2375
-    - FLUENTD_URL=localhost:24224 # this is tricky because it's the actual hosts docker daemon
 web:
   build: .
   command: grunt serve --port 80
