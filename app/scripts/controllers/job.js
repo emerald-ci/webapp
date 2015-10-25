@@ -19,7 +19,7 @@ angular.module('emeraldApp')
       $scope.terminalOutputPreload = "";
       ws.onmessage = function(message) {
           if(undefined != message) {
-              $scope.terminalOutputWebsocket += JSON.parse(message.data).payload.log;
+              $scope.terminalOutputWebsocket += message.data;
               $scope.$apply();
           }
       };
@@ -34,7 +34,7 @@ angular.module('emeraldApp')
           }
       };
 
-      $http.get('/api/v1/jobs/' + $scope.job.id + '/log').
+      $http.get('/api/v1/jobs/' + $scope.job.id + '/log.raw').
         then(function(response) {
                  console.log(response.data);
                  $scope.terminalOutputPreload = response.data;
